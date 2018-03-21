@@ -27,8 +27,10 @@
 		var diceSym = ['\u2680', '\u2681', '\u2682', '\u2683', '\u2684', '\u2685'];
 		roll = diceSym[Math.floor(Math.random() * diceSym.length)];
 		document.getElementById(idname).innerHTML = roll;
-		$("#diceRoll").delay(1000).fadeOut(1000);
-		$("#diceRoll2").delay(1000).fadeOut(1000);
+		$("#diceRoll").fadeOut(1).fadeIn(50).delay(2000).fadeOut(2000);
+		$("#diceRoll2").fadeOut(1).fadeIn(50).delay(2000).fadeOut(2000);
+			$("#diceRoll2").done();
+		//doesn't work for bottom dice... something to do with .done()
 	}
 </script>
 <head>
@@ -43,7 +45,8 @@
 	justify-content: center;
     top: 30%;
 	font-size:500%;
-	transform:scaleY(2.3)
+	transform:scaleY(2.3);
+	z-index:1;
 }
 	
 .opt {
@@ -93,7 +96,10 @@
 }
 
 .diceClass {
-
+	justify-content: center;
+	display: flex;
+	list-style: none;
+	
 }
 
 button:focus {outline:0;}
@@ -118,28 +124,33 @@ button:focus {outline:0;}
 
 									<!-- TOP -->
 <div id="colorChange" class="topL">
+
 	<div class="positionNum">
     	<div style="   display:flex;justify-content:center;" id="clickCount1">
     	0
     	</div>
     </div>
-		<div id="diceRoll" style="position:relative;top:-20%;text-shadow:none;font-size:200%;transform:rotate(45deg);display:flex;justify-content:center;">
-		
-		</div>
+	
+	<div id="diceRoll" style="z-index:3;position:static;text-align:middle;border: 1px solid red;top:20%;text-shadow:none;font-size:150%;transform:rotate(45deg);display:flex;justify-content:center;">
+	</div>
+	
 	<button style="height:75%;width:50%;position:absolute;right:0%;top:5%;background:transparent;border:none;font-size:240%; color: white; opacity:0.3;
 		text-shadow:
 		-1px -1px 0 gray,  
         1px -1px 0 gray,
         -1px 1px 0 gray,
         1px 1px 0 gray; 
-		z-index: 2;" onClick="clicks1++;updateClickCount1();" id="push"><strong> + </strong></button>
+		z-index: 2;" onClick="clicks1++;updateClickCount1();" id="push"><strong> + </strong>
+	</button>
+	
 	<button style="height:75%;width:50%;position:absolute;left:0%;top:5%;background:transparent;border:none;font-size:240%;color: white;  opacity:0.3;
 		text-shadow:
 		-1px -1px 0 gray,  
         1px -1px 0 gray,
         -1px 1px 0 gray,
         1px 1px 0 gray; 
-		z-index: 2;" onClick="clicks1--;updateClickCount1();" id="push"><strong> - </strong></button>
+		z-index: 2;" onClick="clicks1--;updateClickCount1();" id="push"><strong> - </strong>
+	</button>
 	
 	<!--<button style="height:10%;width:25;position:absolute;right:5%;bottom:0%;background:transparent;border:none;font-size:140%;color: white; text-shadow: 2px 2px gray;" onClick="clicks1=clicks1+10;updateClickCount1();" id="push"><strong>  +10 </strong></button>
 	<button style="height:10%;width:25;position:absolute;left:5%;bottom:0%;background:transparent;border:none;font-size:140%;color: white; text-shadow: 2px 2px gray;" onClick="clicks1=0;updateClickCount1();" id="push"><strong> ZERO </strong></button>
@@ -156,9 +167,10 @@ button:focus {outline:0;}
     	0
     	</div>
     </div>
-		<div id="diceRoll2" style="position:relative;top:-20%;text-shadow:none;font-size:200%;transform:rotate(45deg);display:flex;justify-content:center;">
+	
+	<div id="diceRoll2" style="position:relative;top:-30%;text-shadow:none;font-size:200%;transform:rotate(45deg);display:flex;justify-content:center;">
 		
-		</div>
+	</div>
 	<button style="height:75%;width:50%;position:absolute;right:0%;top:5%;background:transparent;border:none;font-size:240%;color: white;  opacity:0.3;
 		text-shadow:
 		-1px -1px 0 gray,  
