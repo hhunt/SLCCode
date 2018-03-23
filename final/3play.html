@@ -68,7 +68,8 @@
     color: black;
     position: absolute;
     top: 47%;
-    width: 100%;
+	right:0%;
+    width: 60%;
     height: 6%;
 	z-index:-1;
 }
@@ -90,16 +91,16 @@
 .containerTop {
     position: absolute;
     top: 0%;
-    left: 0%;
+    right: 0%;
     height: 47%;
-	width:100%;
+	width:55%;
 }
 
 .topL {
 	position: absolute;
 	top: 0%;
-	left: 0%;
-	width:100%;
+	right: 0%;
+	width:55%;
 	height: 47%;
     color: white;
 	text-shadow:
@@ -125,21 +126,49 @@
 	z-index: 2;
 }
 
+.containerLeft {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+	height: 50%;
+	width: 100%;
+	border: 1px solid green;
+}
 
+.left {
+	position: absolute;
+    color: white;
+	text-shadow:
+	border: 1px solid blue;
+		-1px -1px 0 #bec4ce,  
+        1px -1px 0 #bec4ce,
+        -1px 1px 0 #bec4ce,
+        1px 1px 0 #bec4ce;
+	background-color:red;		
+    z-index: 1;
+}
+
+.left2 {
+    position: absolute;
+	border: 1px solid blue;
+    height: 100%;
+	width:20%;
+	z-index: 5;
+}
 
 .containerBot {
     position: absolute;
     bottom: 0%;
-    left: 0%;
+    right: 0%;
     height: 47%;
-	width:100%;
+	width:55%;
 }
 
 .botL {
 	position: absolute;
 	bottom: 0%;
-	left: 0%;
-	width:100%;
+	right: 0%;
+	width:55%;
 	height: 47%;
     color: white;
 	text-shadow:
@@ -153,7 +182,6 @@
 
 .botL2 {
     position: absolute;
-	background: 1px solid red;
     top: 0%;
     right: 40%;
     height: 20%;
@@ -187,13 +215,13 @@ button:focus {outline:0;}
 
 									<!-- OPTIONS -->
 <div class="opt">
-		<button style="height:100%;width:12.5%;position:absolute;left:-2%;background:transparent;border:none;font-size:100%;color:white;transform:rotate(90deg);z-index:2;" onClick="window.location.href='index.html'" id="push"><strong> ⟳ </strong></button>
+		<button style="height:100%;width:12.5%;position:absolute;left:35%;background:transparent;border:none;font-size:100%;color:white;transform:rotate(90deg);z-index:2;" onClick="window.location.href='3play.html'" id="push"><strong> ⟳ </strong></button>
 
-		<button id="dice" style="height:100%; width:12.5%;position:absolute;right:43.75%;background:transparent;border:none;font-size:100%;color:white;transform:rotate(45deg);z-index:2;" onclick="diceRoller('diceRoll');diceRoller('diceRoll2');diceDone('diceRoll');diceDone2('diceRoll2');"><strong> ⚄ </strong></button>
+		<button id="dice" style="height:100%; width:12.5%;position:absolute;left-2%;background:transparent;border:none;font-size:100%;color:white;transform:rotate(45deg);z-index:2;" onclick="diceRoller('diceRoll');diceRoller('diceRoll2');diceDone('diceRoll');diceDone2('diceRoll2');"><strong> ⚄ </strong></button>
 		
-		<button style="height:100%;width:12.5%;position:absolute;left:8%;background:transparent;border:none;font-size:70%;color: white; transform: rotate(90deg); z-index: -2;white;line-height:80%;" onClick="clicks1=clicks1+10;updateClickCount1();clicks2=clicks2+10;updateClickCount2();" id="push"><strong>+<br>10</strong></button>		
+		<button style="height:100%;width:12.5%;position:absolute;left:20%;background:transparent;border:none;font-size:70%;color: white; transform: rotate(90deg); z-index: -2;white;line-height:80%;" onClick="clicks1=clicks1+10;updateClickCount1();clicks2=clicks2+10;updateClickCount2();" id="push"><strong>+<br>10</strong></button>		
 		
-		<button style="height:100%;width:12.5%;position:absolute;right:0%;background:transparent;border:none;font-size:90%;color: white;line-height:80%;" onClick="window.location.href='3play.html'"><strong>3P&#65515;</strong></button>
+		<button style="height:100%;width:12.5%;position:absolute;right:8%;background:transparent;border:none;font-size:90%;color: white;line-height:80%;" onClick="window.location.href='4play.html'"><strong>3P&#65515;</strong></button>
 </div>
 
 									<!-- TOP -->
@@ -234,6 +262,44 @@ button:focus {outline:0;}
 	<!-- colour change -->
 	<button style="height:10%;width:100%;position:absolute;top:0%;opacity:0.1;border:none;font-size:140%;color: white;z-index:1;" onclick="colorPicker('colorChange')" id="push"></button>	
 </div>
+									<!-- LEFT -->
+<div id="colorChange" class="left">
+		<div class="positionNum">
+			<div style="   display:flex;justify-content:center;" id="clickCount1">
+			0
+			</div>
+		</div>
+</div>	
+<div class="containerLeft">		
+	<!--dice-->
+	<div class="left2">
+		<div id="diceRoll" class="diceClass">
+		</div>
+	</div>
+	<!-- + & - buttons -->
+	<button style="height:82.5%;width:50%;position:absolute;left:0%;bottom:5%;background:transparent;border:none;font-size:240%; color: white; opacity:0.3;
+		text-shadow:
+		-1px -1px 0 gray,  
+        1px -1px 0 gray,
+        -1px 1px 0 gray,
+        1px 1px 0 gray; 
+		z-index: 2;" onClick="clicks1++;updateClickCount1();" id="push">
+		<strong> + </strong>
+	</button>
+	
+	<button style="height:82.5%;width:50%;position:absolute;right:0%;bottom:5%;background:transparent;border:none;font-size:240%;color: white;  opacity:0.3;
+		text-shadow:
+		-1px -1px 0 gray,  
+        1px -1px 0 gray,
+        -1px 1px 0 gray,
+        1px 1px 0 gray; 
+		z-index: 2;" onClick="clicks1--;updateClickCount1();" id="push">
+		<strong> - </strong>
+	</button>
+	<!-- colour change -->
+	<button style="height:10%;width:100%;position:absolute;top:0%;opacity:0.1;border:none;font-size:140%;color: white;z-index:1;" onclick="colorPicker('colorChange')" id="push"></button>	
+</div>
+
 
 
 									<!-- BOTTOM -->
