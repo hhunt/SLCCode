@@ -14,23 +14,44 @@
 			document.getElementById("clickCount2").innerHTML = clicks2;
     }
 
-	function colorPicker(idname)
-    {
-		var colors = ["#6698af","#e8a563","#c0dbe2","#e87d63","#83719e","#7daf66","#65686d"];
-		selectedColor = colors[Math.floor(Math.random()*colors.length)];
-		var mydiv = document.getElementById(idname);
-		mydiv.style.backgroundColor  = selectedColor;
-		//--output#color--//document.getElementById(idname).innerHTML += selectedColor;
-    }
+
+	var colors = 
+	["#565958","#cad1cf",
+	"#6495ed","#7b68ee","#4169e1",
+	"#8fbc8f","#32cd32",
+	"#eedd82","#daa520",
+	"#b22222","#ff8c00","#ff6347",
+	"#ffc0cb","#a020f0"]
+	var idx = 0;
+	function colorPicker(idname) { 
+    document.getElementById(idname).style.backgroundColor = colors[++idx%14];
+	} 
+	//function colorPicker(idname)
+    //{
+		//var colors = ["#6698af","#e8a563","#c0dbe2","#e87d63","#83719e","#7daf66","#65686d"];
+		//selectedColor = colors[Math.floor(Math.random()*colors.length)];
+		//var mydiv = document.getElementById(idname);
+		//mydiv.style.backgroundColor  = selectedColor;
+		//OLD?     --output#color--//document.getElementById(idname).innerHTML += selectedColor;			
+	//}
+
 
 	function diceRoller(idname) {
+		$("#diceRoller").delay(4000) 						//delays button usability
 		var diceSym = ['\u2680', '\u2681', '\u2682', '\u2683', '\u2684', '\u2685'];
 		roll = diceSym[Math.floor(Math.random() * diceSym.length)];
 		document.getElementById(idname).innerHTML = roll;
-		$("#diceRoll").fadeOut(1).fadeIn(50).delay(2000).fadeOut(2000);
-		$("#diceRoll2").fadeOut(1).fadeIn(50).delay(2000).fadeOut(2000);
-			$("#diceRoll2").done();
-		//doesn't work for bottom dice... something to do with .done()
+		document.getElementById("dice").disabled = true; 	//for delay
+		setTimeout(function() { 							//for delay
+		document.getElementById("dice").disabled = false;	//for delay
+    }, 3000);												//for delay
+	}
+	function diceDone(idname) {
+		$("#diceRoll").fadeOut(1).fadeIn(50).delay(2500).fadeOut(500);
+	}	
+	function diceDone2(idname) {
+		$("#diceRoll2").fadeOut(1).fadeIn(50).delay(2500).fadeOut(500);
+		$("#diceRoll2").done();
 	}
 </script>
 <head>
@@ -38,17 +59,6 @@
 <meta charset="utf-8"/>
 
 <style> 
-
-.positionNum {
-	position: relative;
-    display: flex;
-	justify-content: center;
-    top: 30%;
-	font-size:500%;
-	transform:scaleY(2.3);
-	z-index:1;
-}
-	
 .opt {
     background-color: #605c5c;
     color: black;
@@ -56,51 +66,111 @@
     top: 47%;
     width: 100%;
     height: 6%;
-	
+	z-index:-1;
 }
-.topL {
-	background-color:#e8a563;
-    color: white;
-	text-shadow:
-		-1px -1px 0 #bec4ce,  
-        1px -1px 0 #bec4ce,
-        -1px 1px 0 #bec4ce,
-        1px 1px 0 #bec4ce; 
-    /* Rotate div */
-    -ms-transform: rotate(-180deg); /* IE 9 */
-    -webkit-transform: rotate(-180deg); /* Safari 3-8 */
-    transform: rotate(-180deg);
+
+.positionNum {
+	position: relative;
+    display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 40%;
+	width: 40%;
+    top: 30%;
+	left: 30%;
+	font-size:500%;
+	transform:scaleY(1.2);
+	z-index:-1;
+}
+
+.containerTop {
     position: absolute;
     top: 0%;
     left: 0%;
     height: 47%;
 	width:100%;
-    z-index: 10;
-	
 }
-.botL {
-    background-color: #6698af;
+
+.topL {
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width:100%;
+	height: 47%;
+    color: white;
 	text-shadow:
 		-1px -1px 0 #bec4ce,  
         1px -1px 0 #bec4ce,
         -1px 1px 0 #bec4ce,
-        1px 1px 0 #bec4ce; 
-    color: white;	
+        1px 1px 0 #bec4ce;
+	background-color:#e8a563;		
+    z-index: 1;
+
+    /* Rotate div */
+    -ms-transform: rotate(-180deg); /* IE 9 */
+    -webkit-transform: rotate(-180deg); /* Safari 3-8 */
+    transform: rotate(-180deg);
+}
+
+.topL2 {
+    position: absolute;
+    bottom: 0%;
+    right: 40%;
+    height: 20%;
+	width:20%;
+	z-index: 2;
+}
+
+
+
+.containerBot {
     position: absolute;
     bottom: 0%;
     left: 0%;
     height: 47%;
 	width:100%;
-    z-index: 10;
-	
+}
+
+.botL {
+	position: absolute;
+	bottom: 0%;
+	left: 0%;
+	width:100%;
+	height: 47%;
+    color: white;
+	text-shadow:
+		-1px -1px 0 #bec4ce,  
+        1px -1px 0 #bec4ce,
+        -1px 1px 0 #bec4ce,
+        1px 1px 0 #bec4ce;
+	background-color:#6698af;		
+    z-index: 1;
+}
+
+.botL2 {
+    position: absolute;
+	background: 1px solid red;
+    top: 0%;
+    right: 40%;
+    height: 20%;
+	width:20%;
+	z-index: 5;
 }
 
 .diceClass {
-	justify-content: center;
+	position: relative;
+    color: white;	
 	display: flex;
-	list-style: none;
-	
-}
+	justify-content: center;
+	text-shadow:none;
+	font-size:250%;
+	text-shadow:
+		-1px -1px 0 #7c7c7c,  
+        1px -1px 0 #7c7c7c,
+        -1px 1px 0 #7c7c7c,
+        1px 1px 0 #7c7c7c; 
+} 
+
 
 button:focus {outline:0;}
 </head>
@@ -113,85 +183,91 @@ button:focus {outline:0;}
 
 									<!-- OPTIONS -->
 <div class="opt">
-		<button style="height:100%;width:12.5%;position:absolute;left:-2%;background:transparent;border:none;font-size:100%;color:white;transform:rotate(90deg);z-index:2;" onClick="clicks1=0;updateClickCount1();clicks2=0;updateClickCount2();" id="push"><strong> ⟳ </strong></button>
+		<button style="height:100%;width:12.5%;position:absolute;left:-2%;background:transparent;border:none;font-size:100%;color:white;transform:rotate(90deg);z-index:2;" onClick="window.location.href='index.html'" id="push"><strong> ⟳ </strong></button>
 
-		<button id="dice" style="height:100%; width:12.5%;position:absolute;right:43.75%;background:transparent;border:none;font-size:100%;color:white;transform:rotate(45deg);z-index:2;" onclick="diceRoller('diceRoll');diceRoller('diceRoll2');"><strong> ⚄ </strong></button>
+		<button id="dice" style="height:100%; width:12.5%;position:absolute;right:43.75%;background:transparent;border:none;font-size:100%;color:white;transform:rotate(45deg);z-index:2;" onclick="diceRoller('diceRoll');diceRoller('diceRoll2');diceDone('diceRoll');diceDone2('diceRoll2');"><strong> ⚄ </strong></button>
 		
-		<button style="height:100%;width:12.5%;position:absolute;left:8%;background:transparent;border:none;font-size:70%;color: white; transform: rotate(90deg); z-index: 2;" onClick="clicks1=clicks1+10;updateClickCount1();clicks2=clicks2+10;updateClickCount2();" id="push"><strong>+10</strong></button>		
+		<button style="height:100%;width:12.5%;position:absolute;left:8%;background:transparent;border:none;font-size:70%;color: white; transform: rotate(90deg); z-index: -2;white;line-height:80%;" onClick="clicks1=clicks1+10;updateClickCount1();clicks2=clicks2+10;updateClickCount2();" id="push"><strong>+<br>10</strong></button>		
 		
-		<button style="height:100%;width:12.5%;position:absolute;right:0%;background:transparent;border:none;font-size:90%;color: white;" onClick="window.location.href='4play.html'"><strong>4P&#65515;</strong></button>
+		<button style="height:100%;width:12.5%;position:absolute;right:0%;background:transparent;border:none;font-size:90%;color: white;line-height:80%;" onClick="window.location.href='4play.html'"><strong>4P&#65515;</strong></button>
 </div>
 
 									<!-- TOP -->
+
 <div id="colorChange" class="topL">
-
-	<div class="positionNum">
-    	<div style="   display:flex;justify-content:center;" id="clickCount1">
-    	0
-    	</div>
-    </div>
-	
-	<div id="diceRoll" style="z-index:3;position:static;text-align:middle;border: 1px solid red;top:20%;text-shadow:none;font-size:150%;transform:rotate(45deg);display:flex;justify-content:center;">
+		<div class="positionNum">
+			<div style="   display:flex;justify-content:center;" id="clickCount1">
+			0
+			</div>
+		</div>
+</div>	
+<div class="containerTop">		
+	<!--dice-->
+	<div class="topL2">
+		<div id="diceRoll" class="diceClass">
+		</div>
 	</div>
-	
-	<button style="height:75%;width:50%;position:absolute;right:0%;top:5%;background:transparent;border:none;font-size:240%; color: white; opacity:0.3;
+	<!-- + & - buttons -->
+	<button style="height:82.5%;width:50%;position:absolute;left:0%;bottom:5%;background:transparent;border:none;font-size:240%; color: white; opacity:0.3;
 		text-shadow:
 		-1px -1px 0 gray,  
         1px -1px 0 gray,
         -1px 1px 0 gray,
         1px 1px 0 gray; 
-		z-index: 2;" onClick="clicks1++;updateClickCount1();" id="push"><strong> + </strong>
+		z-index: 2;" onClick="clicks1++;updateClickCount1();" id="push">
+		<strong> + </strong>
 	</button>
 	
-	<button style="height:75%;width:50%;position:absolute;left:0%;top:5%;background:transparent;border:none;font-size:240%;color: white;  opacity:0.3;
+	<button style="height:82.5%;width:50%;position:absolute;right:0%;bottom:5%;background:transparent;border:none;font-size:240%;color: white;  opacity:0.3;
 		text-shadow:
 		-1px -1px 0 gray,  
         1px -1px 0 gray,
         -1px 1px 0 gray,
         1px 1px 0 gray; 
-		z-index: 2;" onClick="clicks1--;updateClickCount1();" id="push"><strong> - </strong>
+		z-index: 2;" onClick="clicks1--;updateClickCount1();" id="push">
+		<strong> - </strong>
 	</button>
-	
-	<!--<button style="height:10%;width:25;position:absolute;right:5%;bottom:0%;background:transparent;border:none;font-size:140%;color: white; text-shadow: 2px 2px gray;" onClick="clicks1=clicks1+10;updateClickCount1();" id="push"><strong>  +10 </strong></button>
-	<button style="height:10%;width:25;position:absolute;left:5%;bottom:0%;background:transparent;border:none;font-size:140%;color: white; text-shadow: 2px 2px gray;" onClick="clicks1=0;updateClickCount1();" id="push"><strong> ZERO </strong></button>
-	-->
-	<button style="height:10%;width:100%;position:absolute;bottom:0%;background:transparent;border:none;font-size:140%;color: white; opacity: 0.5;z-index:1;" onclick="colorPicker('colorChange')" id="push"></button>
-
+	<!-- colour change -->
+	<button style="height:10%;width:100%;position:absolute;top:0%;opacity:0.1;border:none;font-size:140%;color: white;z-index:1;" onclick="colorPicker('colorChange')" id="push"></button>	
 </div>
 
 
 									<!-- BOTTOM -->
 <div id="colorChange3" class="botL">
-	<div class="positionNum">
-    	<div id="clickCount2">
-    	0
-    	</div>
-    </div>
-	
-	<div id="diceRoll2" style="position:relative;top:-30%;text-shadow:none;font-size:200%;transform:rotate(45deg);display:flex;justify-content:center;">
-		
+		<div class="positionNum">
+			<div style="   display:flex;justify-content:center;" id="clickCount2">
+			0
+			</div>
+		</div>
+</div>
+<div class="containerBot">
+	<div class="botL2">
+		<div id="diceRoll2" class="diceClass">
+		</div>
 	</div>
-	<button style="height:75%;width:50%;position:absolute;right:0%;top:5%;background:transparent;border:none;font-size:240%;color: white;  opacity:0.3;
+	<!-- + & - buttons -->
+	<button style="height:82.5%;width:50%;position:absolute;right:0%;top:5%;background:transparent;border:none;font-size:240%; color: white; opacity:0.3;
 		text-shadow:
 		-1px -1px 0 gray,  
         1px -1px 0 gray,
         -1px 1px 0 gray,
         1px 1px 0 gray; 
-		z-index: 2;" onClick="clicks2++;updateClickCount2();" id="push"><strong> + </strong></button>
-	<button style="height:75%;width:50%;position:absolute;left:0%;top:5%;background:transparent;border:none;font-size:240%;color: white;  opacity:0.3;
+		z-index: 2;" onClick="clicks2++;updateClickCount2();" id="push">
+		<strong> + </strong>
+	</button>
+	
+	<button style="height:82.5%;width:50%;position:absolute;left:0%;top:5%;background:transparent;border:none;font-size:240%;color: white;  opacity:0.3;
 		text-shadow:
 		-1px -1px 0 gray,  
         1px -1px 0 gray,
         -1px 1px 0 gray,
         1px 1px 0 gray; 
-		z-index: 2;" onClick="clicks2--;updateClickCount2();" id="push"><strong> - </strong></button>
-	
-	<!--<button style="height:10%;width:25;position:absolute;right:5%;bottom:0%;background:transparent;border:none;font-size:140%;color: white; text-shadow: 2px 2px gray;" onClick="clicks3=clicks3+10;updateClickCount3();" id="push"><strong>  +10 </strong></button>	
-	<button style="height:10%;width:25;position:absolute;left:5%;bottom:0%;background:transparent;border:none;font-size:140%;color: white; text-shadow: 2px 2px gray;" onClick="clicks3=0;updateClickCount3();" id="push"><strong> ZERO </strong></button>
-	-->
-	<button style="height:10%;width:100%;position:absolute;bottom:0%;background:transparent;border:none;font-size:140%;color: white; opacity: 0.5;z-index:1;" onclick="colorPicker('colorChange3')" id="push"></button>
-	
-	</div>
+		z-index: 2;" onClick="clicks2--;updateClickCount2();" id="push">
+		<strong> - </strong>
+	</button>
+	<!-- colour change -->
+	<button style="height:10%;width:100%;position:absolute;bottom:0%;opacity:0.1;border:none;font-size:140%;color: white;z-index:1;" onclick="colorPicker('colorChange3')" id="push"></button>	
+</div>
 
 </body>
 </html>
